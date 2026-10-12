@@ -1,4 +1,5 @@
 import type { Attribute } from '../model'
+import { AttributeEditor } from './AttributeEditor'
 import { Badge } from './Badge'
 import { ValueDisplay } from './ValueDisplay'
 
@@ -49,6 +50,8 @@ export function AttributeRow({ attribute: a }: { attribute: Attribute }) {
           ))}
         </div>
       )}
+
+      {a.access === 'READWRITE' && a.type !== 'UNKNOWN' && <AttributeEditor attribute={a} />}
     </li>
   )
 }
