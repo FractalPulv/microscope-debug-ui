@@ -1,0 +1,173 @@
+{
+  "gun": {
+    "property_list": {
+      "Conditioning: Total time": {
+        "_name": "Conditioning: Total time",
+        "_defaultValue": 3600,
+        "_value": 3600,
+        "_dtype": "FLOAT",
+        "description": "Total time the conditioning will take in seconds."
+      },
+      "gun_rotation_error": {
+        "_name": "gun_rotation_error",
+        "_defaultValue": 23.0,
+        "_value": 23.0,
+        "_dtype": "FLOAT",
+        "description": "Minimum rotation (for error) for user to rotate the cap"
+      },
+      "gun_rotation_warning": {
+        "_name": "gun_rotation_warning",
+        "_defaultValue": 27.0,
+        "_value": 27.0,
+        "_dtype": "FLOAT",
+        "description": "Minimum rotation (for warning) for user to rotate the cap"
+      }
+    },
+    "attribute_list": {
+      "voltage_accelerator": {
+        "attributeName": "voltage_accelerator",
+        "attributeType": "INT",
+        "description": "The setpoint of the HT Supply",
+        "label": "Voltage Accelerator",
+        "access": "READWRITE",
+        "allowed_values": [],
+        "default_value": 10000,
+        "lastUpdate": 55.385120725,
+        "value": 20000,
+        "min_value": 500,
+        "max_value": 20000
+      },
+      "brightness_mode": {
+        "attributeName": "brightness_mode",
+        "attributeType": "STRING",
+        "description": "Selected BSD Segments",
+        "label": "User Setpoint for brightness mode",
+        "access": "READWRITE",
+        "allowed_values": [
+          "ECO",
+          "MEDIUM",
+          "BRIGHT"
+        ],
+        "default_value": "ECO",
+        "lastUpdate": null,
+        "value": "ECO",
+        "min_value": null,
+        "max_value": null
+      },
+      "HT_state": {
+        "attributeName": "HT_state",
+        "attributeType": "STRING",
+        "description": "Current state of the High Tension Supply",
+        "label": "HT State",
+        "access": "READ",
+        "allowed_values": ["ENABLED", "DISABLED"],
+        "default_value": null,
+        "lastUpdate": null,
+        "value": "DISABLED",
+        "min_value": null,
+        "max_value": null
+      },
+      "filament_state": {
+        "attributeName": "filament_state",
+        "attributeType": "STRING",
+        "description": "Current state of the Filament",
+        "label": "Filament State",
+        "access": "READ",
+        "allowed_values": ["ENABLED", "DISABLED"],
+        "default_value": null,
+        "lastUpdate": null,
+        "value": "DISABLED",
+        "min_value": null,
+        "max_value": null
+      }
+    },
+    "command_list": {
+      "enableHT": {
+        "name": "enableHT",
+        "description": "Enable the HT"
+      },
+      "disableHT": {
+        "name": "disableHT",
+        "description": "Disable the HT"
+      },
+      "enableCathode": {
+        "name": "enableCathode",
+        "description": "Enable the cathode"
+      },
+      "disableCathode": {
+        "name": "disableCathode",
+        "description": "Disable the cathode"
+      }
+    }
+  },
+  "vacuum": {
+    "attribute_list": {
+      "target_vacuum_level": {
+        "attributeName": "target_vacuum_level",
+        "attributeType": "STRING",
+        "description": "Desired vacuum level",
+        "label": "Desired vacuum level",
+        "access": "READWRITE",
+        "allowed_values": [
+          "VAC_LEVEL_HIGH",
+          "VAC_LEVEL_LOW"
+        ],
+        "default_value": "VAC_LEVEL_HIGH",
+        "lastUpdate": null,
+        "value": "VAC_LEVEL_HIGH",
+        "min_value": null,
+        "max_value": null
+      },
+      "vacuum_state": {
+        "attributeName": "vacuum_state",
+        "attributeType": "STRING",
+        "description": "Actual vacuum state, state",
+        "label": "Actual vacuum state - state",
+        "access": "READ",
+        "allowed_values": [],
+        "default_value": null,
+        "lastUpdate": null,
+        "value": "VENTED",
+        "min_value": null,
+        "max_value": null
+      },
+      "vacuum_status_progress": {
+        "attributeName": "vacuum_status_progress",
+        "attributeType": "FLOAT",
+        "description": "Progress indicator for various vacuum sequences [0-100]",
+        "label": "Vacuum Change Progress",
+        "access": "READ",
+        "allowed_values": [],
+        "default_value": null,
+        "lastUpdate": null,
+        "value": 0,
+        "min_value": null,
+        "max_value": null
+      },
+      "auto_pump_enabled": {
+        "attributeName": "auto_pump_enabled",
+        "attributeType": "BOOL",
+        "description": "Automatically pump down when door has been closed",
+        "label": "Auto pump enabled",
+        "access": "READWRITE",
+        "allowed_values": [],
+        "default_value": false,
+        "lastUpdate": null,
+        "value": false,
+        "min_value": null,
+        "max_value": null
+      }
+    },
+    "property_list": {},
+    "command_list": {
+      "PumpDown": {
+        "name": "PumpDown",
+        "description": "Initiate pumping down sequence"
+      },
+      "VentVacuum": {
+        "name": "VentVacuum",
+        "description": "Initiate venting sequence"
+      }
+    }
+  }
+}
