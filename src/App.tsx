@@ -1,6 +1,7 @@
 import { useMemo, useState } from 'react'
 import { toModules } from './api/mapper'
 import { useIndex } from './api/queries'
+import { AutoRefresh, type PollMs } from './components/AutoRefresh'
 import { ModulePanel } from './components/ModulePanel'
 import { RawJsonDrawer } from './components/RawJsonDrawer'
 import { SearchBox } from './components/SearchBox'
@@ -16,7 +17,8 @@ const BUTTON =
   'whitespace-nowrap rounded-md border border-zinc-300 bg-white px-3 py-1.5 text-sm font-medium hover:bg-zinc-50 disabled:opacity-50'
 
 export default function App() {
-  const { data, error, isPending, isFetching, refetch } = useIndex()
+  const [pollMs, setPollMs] = useState<PollMs>(false)
+  const { data, error, isPending, isFetching, refetch, dataUpdatedAt } = useIndex(pollMs)
   const modules = useMemo(() => (data ? toModules(data) : []), [data])
   const [showRaw, setShowRaw] = useState(false)
   const [query, setQuery] = useState('')
@@ -33,7 +35,8 @@ export default function App() {
           <p className="font-mono text-xs text-zinc-500">{API_URL}</p>
         </div>
         <SearchBox value={query} onChange={setQuery} />
-        <div className="ml-auto flex gap-2">
+        <div className="ml-auto flex items-center gap-2">
+          <AutoRefresh value={pollMs} onChange={setPollMs} updatedAt={dataUpdatedAt} fetching={isFetching} />
           <button onClick={expandAll} disabled={!data || searching || allExpanded} className={BUTTON}>
             Expand all
           </button>
@@ -43,8 +46,8 @@ export default function App() {
           <button onClick={() => setShowRaw(true)} disabled={!data} className={BUTTON}>
             Raw JSON
           </button>
-          <button onClick={() => refetch()} disabled={isFetching} className={`${BUTTON} w-24`}>
-            {isFetching ? 'Loading…' : 'Refresh'}
+          <button onClick={() => refetch()} disabled={isFetching} className={BUTTON}>
+            Refresh
           </button>
         </div>
       </header>
